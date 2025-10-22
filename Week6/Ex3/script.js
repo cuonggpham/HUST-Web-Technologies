@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // lay cac phan tu can thiet cho tim kiem
+    // lay phan tu can thiet cho tim kiem
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const productItems = document.querySelectorAll('.product-item');
 
     function searchProducts() {
-        // lay gia tri tu o input va chuyen ve chu thuong
+        // lay gia tri input va chuyen ve chu thuong
         const searchTerm = searchInput.value.toLowerCase().trim();
 
         productItems.forEach(function(product) {
             const productName = product.querySelector('.product-name').textContent.toLowerCase();
             
-            // kiem tra xem ten san pham co chua tu khoa tim kiem khong
+            // kiem tra ten san pham co chua tu khoa khong
             if (productName.includes(searchTerm)) {
                 product.style.display = '';
             } else {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // hien thi thong bao neu khong tim thay san pham nao
+        // hien thong bao neu khong tim thay
         checkNoResults();
     }
     
@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
             product => product.style.display !== 'none'
         );
         
-        // xoa thong bao cu neu co
+        // xoa thong bao cu
         const oldMessage = document.getElementById('noResultsMessage');
         if (oldMessage) {
             oldMessage.remove();
         }
         
-        // neu khong co san pham nao hien thi, them thong bao
+        // neu khong co san pham nao, them thong bao
         if (visibleProducts.length === 0) {
             const productList = document.getElementById('productList');
             const message = document.createElement('p');
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // gan su kien click cho nut tim kiem
     searchBtn.addEventListener('click', searchProducts);
     
-    // su kien Enter hoac realtime search khi nguoi dung nhap
+    // su kien enter hoac realtime search
     searchInput.addEventListener('keyup', function(event) {
         if (event.key === 'Enter') {
             searchProducts();
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // hien thi lai tat ca san pham khi xoa noi dung tim kiem
+    // hien lai tat ca khi xoa noi dung tim kiem
     searchInput.addEventListener('input', function() {
         if (searchInput.value === '') {
             productItems.forEach(function(product) {
@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const addProductForm = document.getElementById('addProductForm');
     const cancelAddProductBtn = document.getElementById('cancelAddProduct');
     
-    // ham toggle hien thi form
+    // ham toggle hien/an form
     function toggleAddProductForm() {
-        //classList.toggle de them/xoa class "hidden"
+        // toggle de them/xoa class hidden
         addProductSection.classList.toggle('hidden');
         
         // scroll den form khi hien thi
@@ -86,20 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // gan su kien click cho nut "Them san pham"
+    // gan su kien click cho nut them san pham
     addProductBtn.addEventListener('click', toggleAddProductForm);
     
-    // gan su kien click cho nut "Huy" trong form
+    // gan su kien click cho nut huy
     cancelAddProductBtn.addEventListener('click', function() {
-        // an form va reset form
+        // an form va reset
         addProductSection.classList.add('hidden');
         addProductForm.reset();
     });
     
     
-    // gan su kien submit cho form them san pham
+    // gan su kien submit cho form
     addProductForm.addEventListener('submit', function(event) {
-        // ngan chan hanh vi mac dinh cua form (khong reload trang)
+        // ngan hanh vi mac dinh (khong reload)
         event.preventDefault();
 
         const productName = document.getElementById('newProductName').value.trim();
@@ -112,11 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // tao phan tu article moi cho san pham
+        // tao article moi cho san pham
         const newProduct = document.createElement('article');
         newProduct.className = 'product-item';
         
-        // tao noi dung HTML cho san pham moi
+        // tao noi dung html
         newProduct.innerHTML = `
             <h3 class="product-name">${productName}</h3>
             <img src="${productImage || 'https://via.placeholder.com/300x300?text=No+Image'}" 
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const productList = document.getElementById('productList');
         productList.appendChild(newProduct);
         
-        // Gan su kien cho nut "Them vao gio hang" cua san pham moi
+        // gan su kien cho nut gio hang cua san pham moi
         const newAddToCartBtn = newProduct.querySelector('.add-to-cart-btn');
         newAddToCartBtn.addEventListener('click', function() {
             addToCart(productName, productPrice);
@@ -142,14 +142,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         alert('Da them san pham "' + productName + '" thanh cong!');
         
-        // Reset form va an form
+        // reset form va an
         addProductForm.reset();
         addProductSection.classList.add('hidden');
         
-        // scroll den san pham moi vua them
+        // scroll den san pham moi
         newProduct.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-        // Them hieu ung highlight cho san pham moi
+        // them hieu ung highlight
         newProduct.style.animation = 'slideUp 0.8s ease-out';
     });
     
@@ -158,11 +158,11 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Da them "' + productName + '" vao gio hang!\nGia: ' + productPrice + ' VND');
     }
     
-    // su kien cho tat ca nut "Them vao Gio hang" da co san
+    // su kien cho tat ca nut them vao gio hang co san
     const addToCartButtons = document.querySelectorAll('article button');
     addToCartButtons.forEach(function(button) {
         button.addEventListener('click', function() {
-            // lay thong tin san pham tu article cha
+            // lay thong tin tu article cha
             const article = this.closest('article');
             const productName = article.querySelector('.product-name').textContent;
             const priceElement = article.querySelector('p:last-of-type');
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
-    // HIEU UNG HOVER CHO CAC NUT 
+    // hieu ung hover cho cac nut
     const actionButtons = [searchBtn, addProductBtn];
     actionButtons.forEach(function(button) {
         button.addEventListener('mouseenter', function() {
@@ -187,6 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    console.log('JavaScript da duoc khoi tao thanh cong!');
-    console.log('So san pham hien tai:', productItems.length);
+    console.log('javascript da khoi tao thanh cong');
+    console.log('so san pham hien tai:', productItems.length);
 });

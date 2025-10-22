@@ -1,28 +1,28 @@
-/* ===== Reset & General Styles ===== */
-/* reset mac dinh cua trinh duyet de dam bao giao dien nhat quan tren cac trinh duyet */
+/* reset & general styles */
+/* xoa mac dinh trinh duyet de giao dien nhat quan */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* tinh chieu rong bao gom ca padding va border */
+    box-sizing: border-box; /* tinh width co ca padding va border */
 }
 
 :root {
-    /* css variables: bien toan cuc co the su dung lai o bat ky dau */
-    /* Primary - 60% (Dominant color) */
+    /* bien css toan cuc co the dung lai */
+    /* primary - 60% (mau chu dao) */
     --primary-color: #1e3a8a;
     --primary-light: #3b82f6;
     --primary-dark: #1e40af;
     
-    /* Secondary - 30% (Supporting color) */
+    /* secondary - 30% (mau phu) */
     --secondary-color: #f59e0b;
     --secondary-light: #fbbf24;
     --secondary-dark: #d97706;
     
-    /* Accent - 10% (Highlight color) */
+    /* accent - 10% (mau nhan manh) */
     --accent-color: #10b981;
     --accent-light: #34d399;
     
-    /* Neutrals */
+    /* neutrals */
     --dark-bg: #1f2937;
     --light-bg: #f8fafc;
     --white: #ffffff;
@@ -30,7 +30,7 @@
     --text-secondary: #6b7280;
     --border-color: #e5e7eb;
     
-    /* Shadows */
+    /* shadows */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -45,15 +45,15 @@ body {
     min-height: 100vh;
 }
 
-/* ===== Header Styles ===== */
+/* header styles */
 header {
-    background: var(--primary-color); /* su dung bien css da dinh nghia */
+    background: var(--primary-color); /* su dung bien css */
     color: var(--white);
     padding: 25px 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* tao bong cho phan tu */
-    position: sticky; /* dinh header o dau trang khi cuon xuong */
+    position: sticky; /* dinh header o dau khi cuon */
     top: 0;
-    z-index: 1000; /* dam bao header luon hien thi tren cung */
+    z-index: 1000; /* dam bao header luon tren cung */
     border-bottom: 3px solid var(--secondary-color);
 }
 
@@ -70,7 +70,7 @@ header h1 {
 }
 
 @keyframes fadeInDown {
-    /* dinh nghia hieu ung animation tu tren xuong */
+    /* animation tu tren xuong */
     from {
         opacity: 0;
         transform: translateY(-20px);
@@ -101,20 +101,20 @@ header h1 {
     }
 }
 
-/* ===== Navigation Styles ===== */
+/* navigation styles */
 nav {
     max-width: 1200px;
-    margin: 0 auto; /* canh giua phan tu */
+    margin: 0 auto; /* canh giua */
     padding: 0 20px;
-    animation: fadeIn 1s ease-out 0.3s backwards; /* animation co delay 0.3s */
+    animation: fadeIn 1s ease-out 0.3s backwards; /* animation co delay */
 }
 
 nav ul {
-    display: flex; /* su dung flexbox de sap xep cac phan tu */
-    justify-content: center; /* canh giua theo chieu ngang */
-    list-style: none; /* xoa dau cham cua list */
-    flex-wrap: wrap; /* cho phep xuong dong khi het cho */
-    gap: 10px; /* khoang cach giua cac phan tu */
+    display: flex; /* dung flexbox de sap xep */
+    justify-content: center; /* canh giua theo ngang */
+    list-style: none; /* xoa dau cham list */
+    flex-wrap: wrap; /* cho phep xuong dong */
+    gap: 10px; /* khoang cach giua phan tu */
 }
 
 nav ul li {
@@ -127,16 +127,16 @@ nav ul li a {
     font-weight: 600;
     padding: 12px 24px;
     border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* hieu ung chuyen doi muot ma */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* hieu ung muot */
     display: block;
     position: relative;
-    overflow: hidden; /* an cac phan tu tran ra ngoai */
+    overflow: hidden; /* an phan tu tran ngoai */
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 nav ul li a::before {
-    /* pseudo-element tao hieu ung truot khi hover */
+    /* pseudo-element tao hieu ung truot */
     content: '';
     position: absolute;
     top: 0;
@@ -166,7 +166,7 @@ header hr {
     display: none;
 }
 
-/* ===== Main Content Styles ===== */
+/* main content styles */
 main {
     max-width: 1300px;
     margin: 0 auto;
@@ -238,16 +238,16 @@ main > hr {
     display: none;
 }
 
-/* ===== Product List Layout ===== */
+/* product list layout */
 #san-pham > div {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* khoang cach giua cac san pham */
+    gap: 30px; /* khoang cach giua san pham */
     margin-top: 30px;
 }
 
 article {
-    /* moi san pham chiem 1/3 chieu rong tru gap, khong gian ra khi o le */
+    /* moi san pham chiem 1/3 width tru gap */
     flex: 0 1 calc(33.333% - 30px);
     max-width: calc(33.333% - 30px);
     background: var(--white);
@@ -256,7 +256,7 @@ article {
     padding: 25px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
-    flex-direction: column; /* sap xep theo chieu doc */
+    flex-direction: column; /* sap xep doc */
     position: relative;
     overflow: hidden;
 }
@@ -300,13 +300,13 @@ article img {
     margin: 0 auto 20px;
     border-radius: 15px;
     display: block;
-    object-fit: cover; /* cat anh de phu day khung ma khong bi meo */
+    object-fit: cover; /* cat anh de phu day khung */
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 article:hover img {
-    /* phong to va xoay nhe anh khi hover */
+    /* phong to va xoay nhe khi hover */
     transform: scale(1.08) rotate(1deg);
 }
 
@@ -384,7 +384,7 @@ article hr {
     display: none;
 }
 
-/* ===== Form Styles ===== */
+/* form styles */
 form {
     max-width: 650px;
     margin: 30px auto;
@@ -432,7 +432,7 @@ input[type="url"]:focus,
 input[type="number"]:focus,
 select:focus,
 textarea:focus {
-    /* style khi input duoc focus (click vao) */
+    /* style khi focus (click vao) */
     outline: none;
     border-color: var(--primary-light);
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 10px 20px rgba(59, 130, 246, 0.1);
@@ -446,8 +446,8 @@ textarea {
 
 select {
     cursor: pointer;
-    appearance: none; /* xoa style mac dinh cua trinh duyet */
-    /* them mui ten xuong bang svg inline */
+    appearance: none; /* xoa style mac dinh */
+    /* them mui ten xuong bang svg */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231e3a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 15px center;
@@ -507,7 +507,7 @@ form button[type="submit"]:active {
     transform: translateY(-1px);
 }
 
-/* ===== Footer Styles ===== */
+/* footer styles */
 footer {
     background: var(--dark-bg);
     color: #e5e7eb;
@@ -549,11 +549,11 @@ footer small {
     font-size: 0.9rem;
 }
 
-/* ===== Responsive Design - Tablet ===== */
-/* media query cho man hinh tablet (duoi 900px) */
+/* responsive design - tablet */
+/* media query cho tablet (duoi 900px) */
 @media (max-width: 900px) {
     article {
-        /* moi san pham chiem 1/2 chieu rong tren tablet */
+        /* moi san pham chiem 1/2 width tren tablet */
         flex: 1 1 calc(50% - 30px);
     }
 
@@ -570,8 +570,8 @@ footer small {
     }
 }
 
-/* ===== Responsive Design - Mobile ===== */
-/* media query cho man hinh mobile (duoi 600px) */
+/* responsive design - mobile */
+/* media query cho mobile (duoi 600px) */
 @media (max-width: 600px) {
     body {
         font-size: 15px;
@@ -588,9 +588,9 @@ footer small {
     }
 
     nav ul {
-        /* chuyen thanh layout doc tren mobile */
+        /* chuyen thanh layout doc */
         flex-direction: column;
-        align-items: stretch; /* keo dan cac item het chieu rong */
+        align-items: stretch; /* keo dan item het width */
         gap: 8px;
         padding: 0 15px;
     }
@@ -626,15 +626,15 @@ footer small {
         width: 80px;
     }
 
-    /* Product list thành 1 cột trên mobile */
+    /* product list 1 cot tren mobile */
     #san-pham > div {
-        /* sap xep theo chieu doc, moi san pham mot hang */
+        /* sap xep doc, moi san pham mot hang */
         flex-direction: column;
         gap: 25px;
     }
 
     article {
-        /* moi san pham chiem het chieu rong tren mobile */
+        /* moi san pham chiem het width */
         flex: 1 1 100%;
         padding: 20px;
     }
@@ -658,7 +658,7 @@ footer small {
         font-size: 1rem;
     }
 
-    /* Form trên mobile */
+    /* form tren mobile */
     form {
         max-width: 100%;
     }
@@ -682,7 +682,7 @@ footer small {
         font-size: 1.1rem;
     }
 
-    /* Footer trên mobile */
+    /* footer tren mobile */
     footer {
         padding: 35px 20px;
     }
@@ -696,7 +696,7 @@ footer small {
     }
 }
 
-/* ===== Extra Small Devices ===== */
+/* extra small devices */
 @media (max-width: 400px) {
     header h1 {
         font-size: 1.4rem;
@@ -721,13 +721,13 @@ footer small {
     }
 }
 
-/* ===== Hidden Class for Toggle ===== */
-/* class de an hien cac phan tu bang javascript */
+/* hidden class for toggle */
+/* class de an/hien phan tu bang javascript */
 .hidden {
     display: none !important;
 }
 
-/* ===== Error Message Styles ===== */
+/* error message styles */
 .error-message {
     background: #fee2e2;
     color: #991b1b;
@@ -745,7 +745,7 @@ footer small {
     20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
-/* ===== Success Message Animation ===== */
+/* success message animation */
 @keyframes slideInRight {
     from {
         transform: translateX(400px);
@@ -768,13 +768,13 @@ footer small {
     }
 }
 
-/* ===== Smooth Scrolling ===== */
+/* smooth scrolling */
 html {
-    scroll-behavior: smooth; /* cuon trang muot ma thay vi nhay dot ngot */
+    scroll-behavior: smooth; /* cuon trang muot */
 }
 
-/* ===== Selection Styling ===== */
-/* style khi nguoi dung boi den text */
+/* selection styling */
+/* style khi boi den text */
 ::selection {
     background: rgba(245, 158, 11, 0.3);
     color: var(--text-primary);
@@ -786,10 +786,10 @@ html {
     color: var(--text-primary);
 }
 
-/* ===== Scrollbar Styling ===== */
-/* tuy chinh thanh cuon cho webkit browsers (chrome, safari) */
+/* scrollbar styling */
+/* tuy chinh thanh cuon cho webkit (chrome, safari) */
 ::-webkit-scrollbar {
-    width: 12px; /* chieu rong thanh cuon */
+    width: 12px; /* width thanh cuon */
 }
 
 ::-webkit-scrollbar-track {
@@ -806,12 +806,12 @@ html {
     background: var(--primary-dark);
 }
 
-/* ===== Search Container Styles ===== */
+/* search container styles */
 .search-container {
     margin-bottom: 25px;
     display: flex;
-    gap: 10px; /* khoang cach giua cac phan tu */
-    align-items: center; /* canh giua theo chieu doc */
+    gap: 10px; /* khoang cach giua phan tu */
+    align-items: center; /* canh giua theo doc */
 }
 
 .search-input {
@@ -858,10 +858,10 @@ html {
     transform: translateY(-2px);
 }
 
-/* ===== Form Buttons Styles ===== */
+/* form buttons styles */
 .form-buttons {
     display: flex;
-    gap: 15px; /* khoang cach giua cac nut */
+    gap: 15px; /* khoang cach giua nut */
     margin-top: 20px;
 }
 
