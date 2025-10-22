@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- khai bao doctype -->
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Áo Bóng Đá - No Offside Shop</title>
+</head>
+
+<body>
+    <!--  <header>: logo, menu, tieu de -->
+    <header>
+        <h1>No Offside Shop - Áo Bóng Đá Chính Hãng</h1>
+        <!-- <nav> lien ket dieu huong -->
+        <nav>
+            <!-- <ul> tao danh sach khong thu tu -->
+            <ul>
+                <!-- moi <li> la mot muc trong ds -->
+                <!-- <a> de tao lien ket -->
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#san-pham">Sản Phẩm</a></li>
+                <li><a href="#lien-he">Đặt Hàng & Liên Hệ</a></li>
+                <li><a href="#">Giới Thiệu</a></li>
+            </ul>
+        </nav>
+        <hr> 
+    </header>
+
+    <main>
+        <section>
+            <h2>Chào mừng đến với No Offside Shop! - “Ở đây ai cũng hợp lệ!”</h2>
+            <!-- <p> dung de hien thi doan van ban -->
+            <p>Nơi cung cấp những bộ áo đấu đẹp nhất, mới nhất từ các câu lạc bộ và đội tuyển quốc gia trên toàn thế giới. Chất lượng tuyệt vời, giá cả phải chăng.</p>
+        </section>
+
+        <hr>
+
+        <!-- section hien thi danh sach san pham -->
+        <section id="san-pham">
+            <h2>Các Mẫu Áo Nổi Bật</h2>
+            <!-- <div> dung de gom nhom cac phan tu lai voi nhau -->
+            <div>
+                <article>
+                    <h3>Áo Đấu Sân Nhà Manchester United 2024/25</h3>
+
+                    <!-- <img> hien thi hinh anh, alt dung khi hinh loi -->
+                    <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/db1afe9e64d64518bd706b817ab2f11e_9366/Ao_djau_san_nha_chinh_hang_Manchester_United_mua_giai_25-26_DJo_JI7429_HM30.jpg" 
+                         alt="Áo Đấu MU Sân Nhà" 
+                         width="300" 
+                         height="300">
+
+                    <p><strong>Mô tả:</strong> Thiết kế cổ điển với tông màu đỏ chủ đạo. Chất liệu thoáng mát, thấm hút mồ hôi tốt.</p>
+                    <p><strong>Giá:</strong> 650.000 VNĐ</p>
+
+                    <button>Thêm vào Giỏ hàng</button>
+                    <hr>
+                </article>
+
+                <article>
+                    <h3>Áo Thun adidas Z.N.E.</h3>
+                    <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/8a42b790bd1146aa957699c3ca2defda_9366/Ao_Thun_adidas_Z.N.E._Xam_JF2457_01_laydown.jpg" 
+                         alt="Áo Đấu Brazil Sân Khách" 
+                         width="300" 
+                         height="300">
+                    <p><strong>Mô tả:</strong> Màu xám nổi bật, tượng trưng cho biển và bầu trời. Phù hợp cho cả tập luyện và cổ vũ.</p>
+                    <p><strong>Giá:</strong> 590.000 VNĐ</p>
+                    <button>Thêm vào Giỏ hàng</button>
+                    <hr>
+                </article>
+
+                <article>
+                    <h3>Áo Đấu Real Madrid Sân Nhà</h3>
+                    <img src="https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/68f433dd2a1141ffba47a66cfc82d1ff_9366/Ao_DJau_San_Nha_Real_Madrid_Mua_Giai_2025-2026_Chinh_Hang_trang_JV5918_HM30.jpg" 
+                         alt="Áo Đấu Real Madrid Kỷ Niệm" 
+                         width="300" 
+                         height="300">
+                    <p><strong>Mô tả:</strong> Phiên bản đặc biệt, màu trắng truyền thống với điểm nhấn vàng sang trọng. Hàng hiếm!</p>
+                    <p><strong>Giá:</strong> 720.000 VNĐ</p>
+                    <button>Thêm vào Giỏ hàng</button>
+                    <hr>
+                </article>
+            </div>
+        </section>
+
+        <section id="lien-he">
+            <h2>Đặt Hàng Nhanh & Yêu Cầu Tư Vấn</h2>           
+
+            <!-- <form> dung de nhap va gui du lieu len server -->
+            <form action="#" method="POST">
+                <!-- action chi dinh dia chi gui du lieu toi -->
+                <!-- method=POST giup an du lieu nguoi dung khi gui -->
+                <!-- Truong nhap ho ten: <label> mo ta cho o nhap -->
+                <div>
+                    <label for="ho_ten">Họ và Tên (*):</label>
+                    <!-- <input> tao o nhap du lieu, required bat buoc dien -->
+                    <input type="text" id="ho_ten" name="ho_ten" placeholder="Nhập họ tên" required>
+                </div>
+                <br>
+
+                <div>
+                    <label for="email">Email (*):</label>
+                    <!-- type="email" tu dong kiem tra dinh dang email -->
+                    <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" required>
+                </div>
+                <br>
+
+                <!-- <select> box lua chon -->
+                <div>
+                    <label for="san_pham">Chọn Sản Phẩm Quan Tâm:</label>
+                    <select id="san_pham" name="san_pham">
+                        <!-- <option> dai dien cho tung muc lua chon -->
+                        <option value="">-- Chọn một áo đấu --</option>
+                        <option value="mu_home">MU Sân Nhà 24/25</option>
+                        <option value="brazil_away">Brazil Sân Khách 2024</option>
+                        <option value="rm_120">Real Madrid Kỷ Niệm</option>
+                    </select>
+                </div>
+                <br>
+
+                <!-- <textarea> dung de nhap van ban nhieu dong -->
+                <div>
+                    <label for="ghi_chu">Kích cỡ và Yêu cầu khác:</label>
+                    <textarea id="ghi_chu" name="ghi_chu" rows="4" placeholder="Ví dụ: Kích cỡ L, in thêm tên 'RONALDO - 7'"></textarea>
+                </div>
+                <br>
+
+                <button type="submit">Gửi Đơn Hàng / Yêu Cầu</button>
+            </form>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p><strong>No Offside Shop</strong> | Chuyên Áo Đấu Chất Lượng</p>
+        <p>Địa chỉ: 363, phường Đông Sơn, tỉnh Thanh Hoá.</p>
+        <p>Điện thoại: 0936 363 363 | Email: contact@dreamkits.vn</p>
+        <!-- <small> dung de hien thi  thong tin phu -->
+        <p><small>&copy; 2025 No Offside Shop. Bảo lưu mọi quyền.</small></p>
+    </footer>
+
+</body>
+</html>
