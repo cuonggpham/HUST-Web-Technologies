@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!-- khai bao doctype -->
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Áo Bóng Đá - No Offside Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--  <header>: logo, menu, tieu de -->
+    <header>
+        <h1>No Offside Shop - Áo Bóng Đá Chính Hãng</h1>
+        <!-- <nav> lien ket dieu huong -->
+        <nav>
+            <!-- <ul> tao danh sach khong thu tu -->
+            <ul>
+                <!-- moi <li> la mot muc trong ds -->
+                <!-- <a> de tao lien ket -->
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#san-pham">Sản Phẩm</a></li>
+                <li><a href="#lien-he">Đặt Hàng & Liên Hệ</a></li>
+                <li><a href="#">Giới Thiệu</a></li>
+            </ul>
+        </nav>
+        <hr> 
+    </header>
+
+    <main>
+        <section>
+            <h2>Chào mừng đến với No Offside Shop! - “Ở đây ai cũng hợp lệ!”</h2>
+            <!-- <p> dung de hien thi doan van ban -->
+            <p>Nơi cung cấp những bộ áo đấu đẹp nhất, mới nhất từ các câu lạc bộ và đội tuyển quốc gia trên toàn thế giới. Chất lượng tuyệt vời, giá cả phải chăng.</p>
+        </section>
+
+        <hr>
+
+        <!-- section hien thi danh sach san pham -->
+        <section id="san-pham">
+            <h2>Các Mẫu Áo Nổi Bật</h2>
+            
+            <!-- Thanh tim kiem va bo loc nang cao -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." class="search-input">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">Tất cả danh mục</option>
+                    <option value="CLB Anh">CLB Anh</option>
+                    <option value="CLB Tây Ban Nha">CLB Tây Ban Nha</option>
+                    <option value="CLB Đức">CLB Đức</option>
+                    <option value="CLB Pháp">CLB Pháp</option>
+                    <option value="Đội Tuyển Quốc Gia">Đội Tuyển</option>
+                    <option value="Áo Thun">Áo Thun</option>
+                </select>
+                <select id="priceFilter" class="filter-select">
+                    <option value="">Tất cả giá</option>
+                    <option value="0-600000">Dưới 600k</option>
+                    <option value="600000-700000">600k - 700k</option>
+                    <option value="700000-999999999">Trên 700k</option>
+                </select>
+                <select id="sortOption" class="filter-select">
+                    <option value="">Sắp xếp</option>
+                    <option value="name-asc">Tên A-Z</option>
+                    <option value="name-desc">Tên Z-A</option>
+                    <option value="price-asc">Giá tăng dần</option>
+                    <option value="price-desc">Giá giảm dần</option>
+                </select>
+                <button id="addProductBtn" class="add-product-btn">Thêm sản phẩm</button>
+            </div>
+            
+            <!-- Loading indicator -->
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <div class="spinner"></div>
+                <p>Đang tải sản phẩm...</p>
+            </div>
+            
+            <!-- Container cho danh sach san pham -->
+            <div id="productList">
+                <!-- San pham se duoc tai tu API/localStorage khi trang load -->
+            </div>
+        </section>
+
+        <!-- Form thêm sản phẩm mới (ẩn mặc định) -->
+        <section id="add-product-section" class="add-product-form">
+            <h2>Thêm Sản Phẩm Mới</h2>
+            <form id="addProductForm">
+                <div>
+                    <label for="newProductName">Tên Sản Phẩm (*):</label>
+                    <input type="text" id="newProductName" name="productName" placeholder="Nhập tên sản phẩm" required>
+                </div>
+
+                <div>
+                    <label for="newProductCategory">Danh Mục (*):</label>
+                    <select id="newProductCategory" name="productCategory" required>
+                        <option value="">-- Chọn danh mục --</option>
+                        <option value="CLB Anh">CLB Anh</option>
+                        <option value="CLB Tây Ban Nha">CLB Tây Ban Nha</option>
+                        <option value="CLB Đức">CLB Đức</option>
+                        <option value="CLB Pháp">CLB Pháp</option>
+                        <option value="Đội Tuyển Quốc Gia">Đội Tuyển Quốc Gia</option>
+                        <option value="Áo Thun">Áo Thun</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="newProductImage">URL Hình Ảnh:</label>
+                    <input type="url" id="newProductImage" name="productImage" placeholder="Nhập đường dẫn hình ảnh">
+                </div>
+
+                <div>
+                    <label for="newProductDesc">Mô Tả (tối thiểu 10 ký tự):</label>
+                    <textarea id="newProductDesc" name="productDesc" rows="3" placeholder="Nhập mô tả sản phẩm (tối thiểu 10 ký tự)"></textarea>
+                </div>
+
+                <div>
+                    <label for="newProductPrice">Giá (VNĐ) (*):</label>
+                    <input type="number" id="newProductPrice" name="productPrice" placeholder="Ví dụ: 650000" min="1" step="1" required>
+                </div>
+
+                <!-- Thông báo lỗi -->
+                <p id="errorMsg" class="error-message hidden"></p>
+
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Thêm Sản Phẩm</button>
+                    <button type="button" id="cancelAddProduct" class="cancel-btn">Hủy</button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- Modal chi tiết sản phẩm -->
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div id="modalBody">
+                    <!-- Nội dung chi tiết sản phẩm sẽ được load vào đây -->
+                </div>
+            </div>
+        </div>
+
+        <section id="lien-he">
+            <h2>Đặt Hàng Nhanh & Yêu Cầu Tư Vấn</h2>           
+
+            <!-- <form> dung de nhap va gui du lieu len server -->
+            <form action="#" method="POST">
+                <!-- action chi dinh dia chi gui du lieu toi -->
+                <!-- method=POST giup an du lieu nguoi dung khi gui -->
+                <!-- Truong nhap ho ten: <label> mo ta cho o nhap -->
+                <div>
+                    <label for="ho_ten">Họ và Tên (*):</label>
+                    <!-- <input> tao o nhap du lieu, required bat buoc dien -->
+                    <input type="text" id="ho_ten" name="ho_ten" placeholder="Nhập họ tên" required>
+                </div>
+                <br>
+
+                <div>
+                    <label for="email">Email (*):</label>
+                    <!-- type="email" tu dong kiem tra dinh dang email -->
+                    <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email" required>
+                </div>
+                <br>
+
+                <!-- <select> box lua chon -->
+                <div>
+                    <label for="san_pham">Chọn Sản Phẩm Quan Tâm:</label>
+                    <select id="san_pham" name="san_pham">
+                        <!-- <option> dai dien cho tung muc lua chon -->
+                        <option value="">-- Chọn một áo đấu --</option>
+                        <option value="mu_home">MU Sân Nhà 24/25</option>
+                        <option value="brazil_away">Brazil Sân Khách 2024</option>
+                        <option value="rm_120">Real Madrid Kỷ Niệm</option>
+                    </select>
+                </div>
+                <br>
+
+                <!-- <textarea> dung de nhap van ban nhieu dong -->
+                <div>
+                    <label for="ghi_chu">Kích cỡ và Yêu cầu khác:</label>
+                    <textarea id="ghi_chu" name="ghi_chu" rows="4" placeholder="Ví dụ: Kích cỡ L, in thêm tên 'RONALDO - 7'"></textarea>
+                </div>
+                <br>
+
+                <button type="submit">Gửi Đơn Hàng / Yêu Cầu</button>
+            </form>
+        </section>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p><strong>No Offside Shop</strong> | Chuyên Áo Đấu Chất Lượng</p>
+        <p>Địa chỉ: 363, phường Đông Sơn, tỉnh Thanh Hoá.</p>
+        <p>Điện thoại: 0936 363 363 | Email: contact@dreamkits.vn</p>
+        <!-- <small> dung de hien thi  thong tin phu -->
+        <p><small>&copy; 2025 No Offside Shop. Bảo lưu mọi quyền.</small></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

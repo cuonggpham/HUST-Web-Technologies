@@ -1,0 +1,905 @@
+/* reset & general styles */
+/* xoa mac dinh trinh duyet de giao dien nhat quan */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* tinh width co ca padding va border */
+}
+
+:root {
+    /* bien css toan cuc co the dung lai */
+    /* primary - 60% (mau chu dao) */
+    --primary-color: #1e3a8a;
+    --primary-light: #3b82f6;
+    --primary-dark: #1e40af;
+    
+    /* secondary - 30% (mau phu) */
+    --secondary-color: #f59e0b;
+    --secondary-light: #fbbf24;
+    --secondary-dark: #d97706;
+    
+    /* accent - 10% (mau nhan manh) */
+    --accent-color: #10b981;
+    --accent-light: #34d399;
+    
+    /* neutrals */
+    --dark-bg: #1f2937;
+    --light-bg: #f8fafc;
+    --white: #ffffff;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    
+    /* shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: var(--light-bg);
+    min-height: 100vh;
+}
+
+/* header styles */
+header {
+    background: var(--primary-color); /* su dung bien css */
+    color: var(--white);
+    padding: 25px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* tao bong cho phan tu */
+    position: sticky; /* dinh header o dau khi cuon */
+    top: 0;
+    z-index: 1000; /* dam bao header luon tren cung */
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+header h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    text-shadow: none;
+    position: relative;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    /* animation tu tren xuong */
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* navigation styles */
+nav {
+    max-width: 1200px;
+    margin: 0 auto; /* canh giua */
+    padding: 0 20px;
+    animation: fadeIn 1s ease-out 0.3s backwards; /* animation co delay */
+}
+
+nav ul {
+    display: flex; /* dung flexbox de sap xep */
+    justify-content: center; /* canh giua theo ngang */
+    list-style: none; /* xoa dau cham list */
+    flex-wrap: wrap; /* cho phep xuong dong */
+    gap: 10px; /* khoang cach giua phan tu */
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* hieu ung muot */
+    display: block;
+    position: relative;
+    overflow: hidden; /* an phan tu tran ngoai */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+nav ul li a::before {
+    /* pseudo-element tao hieu ung truot */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.5s;
+}
+
+nav ul li a:hover::before {
+    left: 100%;
+}
+
+nav ul li a:hover {
+    background: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+    border-color: transparent;
+}
+
+nav ul li a:active {
+    transform: translateY(-1px);
+}
+
+header hr {
+    display: none;
+}
+
+/* main content styles */
+main {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+section {
+    background: var(--white);
+    margin-bottom: 40px;
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-color);
+    animation: slideUp 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--secondary-color);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+section:hover::before {
+    opacity: 1;
+}
+
+section h2 {
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+section:hover h2::after {
+    width: 120px;
+}
+
+section > p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+main > hr {
+    display: none;
+}
+
+/* product list layout */
+#san-pham > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* khoang cach giua san pham */
+    margin-top: 30px;
+}
+
+article {
+    /* moi san pham chiem 1/3 width tru gap */
+    flex: 0 1 calc(33.333% - 30px);
+    max-width: calc(33.333% - 30px);
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 25px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column; /* sap xep doc */
+    position: relative;
+    overflow: hidden;
+}
+
+article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--secondary-color);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+article:hover::before {
+    transform: scaleX(1);
+}
+
+article:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(30, 58, 138, 0.2);
+    border-color: var(--primary-light);
+}
+
+article h3 {
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    min-height: 65px;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+}
+
+article img {
+    width: 100%;
+    height: 280px;
+    max-width: 100%;
+    margin: 0 auto 20px;
+    border-radius: 15px;
+    display: block;
+    object-fit: cover; /* cat anh de phu day khung */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+article:hover img {
+    /* phong to va xoay nhe khi hover */
+    transform: scale(1.08) rotate(1deg);
+}
+
+article p {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+article p strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+article p:last-of-type {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+article button {
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+    letter-spacing: 0.3px;
+}
+
+article button::before {
+    content: '🛒';
+    margin-right: 8px;
+}
+
+article button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+article button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+article button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+}
+
+article button:active {
+    transform: translateY(-1px);
+}
+
+article hr {
+    display: none;
+}
+
+/* form styles */
+form {
+    max-width: 650px;
+    margin: 30px auto;
+}
+
+form div {
+    margin-bottom: 25px;
+    animation: slideUp 0.6s ease-out backwards;
+}
+
+form div:nth-child(1) { animation-delay: 0.1s; }
+form div:nth-child(2) { animation-delay: 0.2s; }
+form div:nth-child(3) { animation-delay: 0.3s; }
+form div:nth-child(4) { animation-delay: 0.4s; }
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    letter-spacing: 0.3px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit; /* ke thua font tu phan tu cha */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--white);
+    color: var(--text-primary);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    /* style khi focus (click vao) */
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 10px 20px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+select {
+    cursor: pointer;
+    appearance: none; /* xoa style mac dinh */
+    /* them mui ten xuong bang svg */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231e3a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    padding-right: 50px;
+}
+
+form button[type="submit"] {
+    width: 100%;
+    padding: 18px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+}
+
+form button[type="submit"]::before {
+    content: '';
+    margin-right: 0;
+    font-size: 0;
+}
+
+form button[type="submit"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+form button[type="submit"]:hover::after {
+    width: 400px;
+    height: 400px;
+}
+
+form button[type="submit"]:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+}
+
+form button[type="submit"]:active {
+    transform: translateY(-1px);
+}
+
+/* footer styles */
+footer {
+    background: var(--dark-bg);
+    color: #e5e7eb;
+    text-align: center;
+    padding: 45px 20px;
+    margin-top: 60px;
+    border-top: 3px solid var(--secondary-color);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+footer p {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+footer p:first-child {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+footer small {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* responsive design - tablet */
+/* media query cho tablet (duoi 900px) */
+@media (max-width: 900px) {
+    article {
+        /* moi san pham chiem 1/2 width tren tablet */
+        flex: 1 1 calc(50% - 30px);
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    section {
+        padding: 35px 25px;
+    }
+}
+
+/* responsive design - mobile */
+/* media query cho mobile (duoi 600px) */
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+
+    header {
+        padding: 20px 0;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+        padding: 0 15px;
+        margin-bottom: 18px;
+    }
+
+    nav ul {
+        /* chuyen thanh layout doc */
+        flex-direction: column;
+        align-items: stretch; /* keo dan item het width */
+        gap: 8px;
+        padding: 0 15px;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        text-align: center;
+        padding: 14px 20px;
+    }
+
+    main {
+        padding: 20px 15px;
+    }
+
+    section {
+        padding: 30px 20px;
+        margin-bottom: 25px;
+        border-radius: 15px;
+    }
+
+    section h2 {
+        font-size: 1.6rem;
+    }
+
+    section h2::after {
+        width: 60px;
+    }
+
+    section:hover h2::after {
+        width: 80px;
+    }
+
+    /* product list 1 cot tren mobile */
+    #san-pham > div {
+        /* sap xep doc, moi san pham mot hang */
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    article {
+        /* moi san pham chiem het width */
+        flex: 1 1 100%;
+        padding: 20px;
+    }
+
+    article h3 {
+        font-size: 1.3rem;
+        min-height: auto;
+    }
+
+    article img {
+        height: 250px;
+        max-width: 100%;
+    }
+
+    article p:last-of-type {
+        font-size: 1.4rem;
+    }
+
+    article button {
+        padding: 13px 24px;
+        font-size: 1rem;
+    }
+
+    /* form tren mobile */
+    form {
+        max-width: 100%;
+    }
+
+    form div {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px;
+        padding: 13px 18px;
+    }
+
+    form button[type="submit"] {
+        padding: 16px;
+        font-size: 1.1rem;
+    }
+
+    /* footer tren mobile */
+    footer {
+        padding: 35px 20px;
+    }
+
+    footer p {
+        font-size: 0.95rem;
+    }
+
+    footer p:first-child {
+        font-size: 1.3rem;
+    }
+}
+
+/* extra small devices */
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    section h2 {
+        font-size: 1.4rem;
+    }
+
+    article img {
+        height: 220px;
+    }
+
+    article button,
+    form button[type="submit"] {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    footer p:first-child {
+        font-size: 1.2rem;
+    }
+}
+
+/* hidden class for toggle */
+/* class de an/hien phan tu bang javascript */
+.hidden {
+    display: none !important;
+}
+
+/* error message styles */
+.error-message {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border-left: 4px solid #dc2626;
+    font-weight: 600;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* success message animation */
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* smooth scrolling */
+html {
+    scroll-behavior: smooth; /* cuon trang muot */
+}
+
+/* selection styling */
+/* style khi boi den text */
+::selection {
+    background: rgba(245, 158, 11, 0.3);
+    color: var(--text-primary);
+}
+
+::-moz-selection {
+    /* danh cho firefox */
+    background: rgba(245, 158, 11, 0.3);
+    color: var(--text-primary);
+}
+
+/* scrollbar styling */
+/* tuy chinh thanh cuon cho webkit (chrome, safari) */
+::-webkit-scrollbar {
+    width: 12px; /* width thanh cuon */
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+    border: 2px solid var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* search container styles */
+.search-container {
+    margin-bottom: 25px;
+    display: flex;
+    gap: 10px; /* khoang cach giua phan tu */
+    align-items: center; /* canh giua theo doc */
+}
+
+.search-input {
+    flex: 1; /* chiem het khong gian con lai */
+    padding: 12px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.search-btn {
+    padding: 12px 24px;
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.search-btn:hover {
+    background: var(--secondary-dark);
+    transform: translateY(-2px);
+}
+
+.add-product-btn {
+    padding: 12px 24px;
+    background: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.add-product-btn::before {
+    content: '➕ ';
+}
+
+.add-product-btn:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+/* form buttons styles */
+.form-buttons {
+    display: flex;
+    gap: 15px; /* khoang cach giua nut */
+    margin-top: 20px;
+}
+
+.submit-btn, .cancel-btn {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+}
+
+.cancel-btn {
+    background: var(--text-secondary);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
+}
+
+.cancel-btn:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 114, 128, 0.4);
+}
+
+.submit-btn:active, .cancel-btn:active {
+    transform: translateY(0);
+}
