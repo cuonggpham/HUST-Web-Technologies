@@ -347,11 +347,6 @@ article button {
     letter-spacing: 0.3px;
 }
 
-article button::before {
-    content: '🛒';
-    margin-right: 8px;
-}
-
 article button::after {
     content: '';
     position: absolute;
@@ -727,6 +722,15 @@ footer small {
     display: none !important;
 }
 
+/* Add product form with transition */
+.add-product-form {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.3s ease, margin-bottom 0.3s ease;
+    margin-bottom: 0;
+}
+
 /* error message styles */
 .error-message {
     background: #fee2e2;
@@ -806,56 +810,429 @@ html {
     background: var(--primary-dark);
 }
 
-/* search container styles */
+/* search container styles - compact design */
 .search-container {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     display: flex;
-    gap: 10px; /* khoang cach giua phan tu */
-    align-items: center; /* canh giua theo doc */
+    gap: 10px;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 12px 18px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
 }
 
 .search-input {
-    flex: 1; /* chiem het khong gian con lai */
-    padding: 12px 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    font-size: 1rem;
+    flex: 1;
+    min-width: 180px;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: var(--white);
+    transition: all 0.3s;
+    min-width: 130px;
+    white-space: nowrap;
+}
+
+.filter-select:hover, .filter-select:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }
 
 .search-btn {
-    padding: 12px 24px;
-    background: var(--secondary-color);
-    color: var(--white);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.search-btn:hover {
-    background: var(--secondary-dark);
-    transform: translateY(-2px);
+    display: none;
 }
 
 .add-product-btn {
-    padding: 12px 24px;
+    padding: 8px 16px;
     background: var(--accent-color);
     color: var(--white);
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 0.9rem;
     transition: all 0.3s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .add-product-btn::before {
-    content: '➕ ';
+    content: '+ ';
 }
 
 .add-product-btn:hover {
-    background: var(--accent-light);
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Loading indicator */
+.loading-indicator {
+    text-align: center;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
+
+.spinner {
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Product badge - compact pill design */
+.product-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: var(--white);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+}
+
+/* Product actions - clean button layout */
+.product-actions {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.btn-primary, .btn-info, .btn-danger, .btn-secondary {
+    padding: 9px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+.btn-info {
+    background: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-info:hover {
+    background: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.btn-secondary {
+    background: var(--text-secondary);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 14px 28px;
+    font-size: 1.05rem;
+}
+
+/* No results */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+/* Fade in animation */
+.fade-in {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Highlight animation */
+.highlight {
+    animation: highlightPulse 1s ease-in-out;
+}
+
+@keyframes highlightPulse {
+    0%, 100% {
+        background: var(--white);
+    }
+    50% {
+        background: rgba(245, 158, 11, 0.2);
+    }
+}
+
+/* Success toast */
+.success-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent-color);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+}
+
+.success-toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-icon {
+    font-size: 1.5rem;
+}
+
+.toast-message {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: sticky;
+    top: 0;
+    right: 0;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 15px 20px;
+    z-index: 1;
+    background: var(--white);
+    border-radius: 0 20px 0 0;
+}
+
+.close-modal:hover {
+    color: var(--primary-color);
+}
+
+.modal-product-detail {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.modal-product-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-badge {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.modal-product-info h2 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modal-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--secondary-color);
+}
+
+.modal-desc, .modal-features {
+    background: var(--light-bg);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.modal-desc h3, .modal-features h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.modal-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-features li {
+    padding: 8px 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+/* Responsive for modal */
+@media (max-width: 768px) {
+    .modal-product-detail {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    
+    .search-container {
+        padding: 12px 15px;
+    }
+    
+    .search-input,
+    .filter-select {
+        min-width: 120px;
+    }
+    
+    .add-product-btn {
+        width: 100%;
+    }
+    
+    .product-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-primary, .btn-info, .btn-danger {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
 }
 
 /* form buttons styles */
