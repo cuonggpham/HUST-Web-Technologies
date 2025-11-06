@@ -1,8 +1,10 @@
 function SearchForm({ onChangeValue }) {
   return (
-    <div>
-      <h2>Search Form</h2>
-    </div>
+    <input
+      type="text"
+      placeholder="Tìm theo name, username"
+      onChange={(e) => onChangeValue(e.target.value)}
+    />
   );
 }
 

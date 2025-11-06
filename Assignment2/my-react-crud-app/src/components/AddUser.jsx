@@ -1,7 +1,125 @@
+import { useState } from 'react';
+
 function AddUser({ onAdd }) {
+  const [adding, setAdding] = useState(false);
+  const [user, setUser] = useState({
+    name: "", 
+    username: "", 
+    email: "",
+    address: { street: "", suite: "", city: "" },
+    phone: "", 
+    website: ""
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    if (["street", "suite", "city"].includes(id)) {
+      setUser({ ...user, address: { ...user.address, [id]: value } });
+    } else {
+      setUser({ ...user, [id]: value });
+    }
+  };
+
+  const handleAdd = () => {
+    if (user.name === "" || user.username === "") {
+      alert("Vui lòng nhập Name và Username!");
+      return;
+    }
+    onAdd(user);
+    setUser({ 
+      name: "", 
+      username: "", 
+      email: "", 
+      address: { street: "", suite: "", city: "" }, 
+      phone: "", 
+      website: "" 
+    });
+    setAdding(false);
+  };
+
   return (
     <div>
-      <h2>Add User</h2>
+      <button onClick={() => setAdding(true)}>Thêm</button>
+      {adding && (
+        <div>
+          <h4>Thêm người dùng</h4>
+          
+          <label htmlFor="name">Name: </label>
+          <input 
+            id="name" 
+            type="text" 
+            value={user.name}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label htmlFor="username">Username: </label>
+          <input 
+            id="username" 
+            type="text" 
+            value={user.username}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label htmlFor="email">Email: </label>
+          <input 
+            id="email" 
+            type="text" 
+            value={user.email}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label htmlFor="street">Street: </label>
+          <input 
+            id="street" 
+            type="text" 
+            value={user.address.street}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label htmlFor="suite">Suite: </label>
+          <input 
+            id="suite" 
+            type="text" 
+            value={user.address.suite}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label htmlFor="city">City: </label>
+          <input 
+            id="city" 
+            type="text" 
+            value={user.address.city}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label htmlFor="phone">Phone: </label>
+          <input 
+            id="phone" 
+            type="text" 
+            value={user.phone}
+            onChange={handleChange}
+          />
+          <br />
+
+          <label htmlFor="website">Website: </label>
+          <input 
+            id="website" 
+            type="text" 
+            value={user.website}
+            onChange={handleChange}
+          />
+          <br />
+
+          <button onClick={handleAdd}>Lưu</button>
+          <button onClick={() => setAdding(false)}>Hủy</button>
+        </div>
+      )}
     </div>
   );
 }
