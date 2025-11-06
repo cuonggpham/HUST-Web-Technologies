@@ -1,7 +1,11 @@
 import { useState } from 'react';
 
 function AddUser({ onAdd }) {
+  // useState de quan ly trang thai hien/an form them user
   const [adding, setAdding] = useState(false);
+  
+  // useState de quan ly trang thai du lieu user dang nhap
+  // State nay la controlled state cho cac input fields
   const [user, setUser] = useState({
     name: "", 
     username: "", 
@@ -11,21 +15,27 @@ function AddUser({ onAdd }) {
     website: ""
   });
 
+  // Controlled Component: ham xu ly thay doi gia tri input
+  // Cap nhat state user khi nguoi dung nhap lieu
   const handleChange = (e) => {
     const { id, value } = e.target;
     if (["street", "suite", "city"].includes(id)) {
+      // Cap nhat nested object (address) bang cach spread operator
       setUser({ ...user, address: { ...user.address, [id]: value } });
     } else {
       setUser({ ...user, [id]: value });
     }
   };
 
+  // State Lifting: ham nay goi onAdd de truyen data len component cha (App)
   const handleAdd = () => {
     if (user.name === "" || user.username === "") {
       alert("Vui lòng nhập Name và Username!");
       return;
     }
+    // Lift state len component cha thong qua props onAdd
     onAdd(user);
+    // Reset state ve gia tri mac dinh sau khi them
     setUser({ 
       name: "", 
       username: "", 
@@ -46,6 +56,7 @@ function AddUser({ onAdd }) {
             <h4>Thêm người dùng</h4>
             
             <label htmlFor="name">Name: </label>
+            {/* Controlled Component: value duoc quan ly boi state user.name */}
             <input 
               id="name" 
               type="text" 

@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 
 function ResultTable({ keyword, user, onAdded }) {
+  // useState de quan ly danh sach users
   const [users, setUsers] = useState([]);
+  // useState de quan ly trang thai loading
   const [loading, setLoading] = useState(true);
+  // useState de quan ly user dang duoc chinh sua
   const [editing, setEditing] = useState(null);
 
+  // useEffect chay 1 lan khi component mount de fetch data tu API
+  // Dependency array rong [] => chi chay 1 lan duy nhat
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(res => res.json())
@@ -14,22 +19,29 @@ function ResultTable({ keyword, user, onAdded }) {
       });
   }, []);
 
+  // useEffect lang nghe su thay doi cua prop user tu component cha
+  // Khi user thay doi (co user moi), them vao danh sach
+  // Dependency array [user, onAdded] => chay khi user hoac onAdded thay doi
   useEffect(() => {
     if (user) {
       setUsers((prev) => [...prev, { ...user, id: prev.length + 1 }]);
+      // Goi callback onAdded de thong bao cho component cha
       onAdded();
     }
   }, [user, onAdded]);
 
+  // Filter users dua tren keyword duoc truyen tu component cha (State Lifting)
   const filteredUsers = users.filter(
     (u) => u.name.toLowerCase().includes(keyword.toLowerCase()) ||
            u.username.toLowerCase().includes(keyword.toLowerCase())
   );
 
+  // Set state editing khi click nut Sua
   function editUser(user) {
     setEditing({ ...user, address: { ...user.address } });
   }
 
+  // Controlled Component: ham xu ly thay doi gia tri input khi edit
   const handleEditChange = (field, value) => {
     if (["street", "suite", "city"].includes(field)) {
       setEditing({ ...editing, address: { ...editing.address, [field]: value } });
@@ -61,6 +73,7 @@ function ResultTable({ keyword, user, onAdded }) {
             <h4>Sửa người dùng</h4>
             
             <label htmlFor="name">Name: </label>
+            {/* Controlled Component: gia tri input duoc dieu khien boi state editing */}
             <input 
               id="name" 
               type="text" 
