@@ -14,7 +14,6 @@ function ResultTable({ keyword, user, onAdded }) {
       });
   }, []);
 
-  // Khi prop user thay đổi → thêm vào danh sách
   useEffect(() => {
     if (user) {
       setUsers((prev) => [...prev, { ...user, id: prev.length + 1 }]);
@@ -27,12 +26,10 @@ function ResultTable({ keyword, user, onAdded }) {
            u.username.toLowerCase().includes(keyword.toLowerCase())
   );
 
-  // Sao chép dữ liệu user sang state editing (Deep Copy)
   function editUser(user) {
     setEditing({ ...user, address: { ...user.address } });
   }
 
-  // Xử lý thay đổi trong form edit
   const handleEditChange = (field, value) => {
     if (["street", "suite", "city"].includes(field)) {
       setEditing({ ...editing, address: { ...editing.address, [field]: value } });
@@ -41,13 +38,11 @@ function ResultTable({ keyword, user, onAdded }) {
     }
   };
 
-  // Lưu sau khi chỉnh sửa
   function saveUser() {
     setUsers(prev => prev.map(u => u.id === editing.id ? editing : u));
     setEditing(null);
   }
 
-  // Xóa người dùng
   function removeUser(id) {
     setUsers((prev) => prev.filter((u) => u.id != id));
   }
@@ -61,83 +56,77 @@ function ResultTable({ keyword, user, onAdded }) {
       <h2>Result Table</h2>
       
       {editing && (
-        <div>
-          <h4>Sửa người dùng</h4>
-          
-          <label htmlFor="name">Name: </label>
-          <input 
-            id="name" 
-            type="text" 
-            value={editing.name}
-            onChange={(e) => handleEditChange("name", e.target.value)}
-          />
-          <br />
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h4>Sửa người dùng</h4>
+            
+            <label htmlFor="name">Name: </label>
+            <input 
+              id="name" 
+              type="text" 
+              value={editing.name}
+              onChange={(e) => handleEditChange("name", e.target.value)}
+            />
 
-          <label htmlFor="username">Username: </label>
-          <input 
-            id="username" 
-            type="text" 
-            value={editing.username}
-            onChange={(e) => handleEditChange("username", e.target.value)}
-          />
-          <br />
+            <label htmlFor="username">Username: </label>
+            <input 
+              id="username" 
+              type="text" 
+              value={editing.username}
+              onChange={(e) => handleEditChange("username", e.target.value)}
+            />
 
-          <label htmlFor="email">Email: </label>
-          <input 
-            id="email" 
-            type="text" 
-            value={editing.email}
-            onChange={(e) => handleEditChange("email", e.target.value)}
-          />
-          <br />
+            <label htmlFor="email">Email: </label>
+            <input 
+              id="email" 
+              type="text" 
+              value={editing.email}
+              onChange={(e) => handleEditChange("email", e.target.value)}
+            />
 
-          <label htmlFor="street">Street: </label>
-          <input 
-            id="street" 
-            type="text" 
-            value={editing.address.street}
-            onChange={(e) => handleEditChange("street", e.target.value)}
-          />
-          <br />
+            <label htmlFor="street">Street: </label>
+            <input 
+              id="street" 
+              type="text" 
+              value={editing.address.street}
+              onChange={(e) => handleEditChange("street", e.target.value)}
+            />
 
-          <label htmlFor="suite">Suite: </label>
-          <input 
-            id="suite" 
-            type="text" 
-            value={editing.address.suite}
-            onChange={(e) => handleEditChange("suite", e.target.value)}
-          />
-          <br />
+            <label htmlFor="suite">Suite: </label>
+            <input 
+              id="suite" 
+              type="text" 
+              value={editing.address.suite}
+              onChange={(e) => handleEditChange("suite", e.target.value)}
+            />
 
-          <label htmlFor="city">City: </label>
-          <input 
-            id="city" 
-            type="text" 
-            value={editing.address.city}
-            onChange={(e) => handleEditChange("city", e.target.value)}
-          />
-          <br />
+            <label htmlFor="city">City: </label>
+            <input 
+              id="city" 
+              type="text" 
+              value={editing.address.city}
+              onChange={(e) => handleEditChange("city", e.target.value)}
+            />
 
-          <label htmlFor="phone">Phone: </label>
-          <input 
-            id="phone" 
-            type="text" 
-            value={editing.phone}
-            onChange={(e) => handleEditChange("phone", e.target.value)}
-          />
-          <br />
+            <label htmlFor="phone">Phone: </label>
+            <input 
+              id="phone" 
+              type="text" 
+              value={editing.phone}
+              onChange={(e) => handleEditChange("phone", e.target.value)}
+            />
 
-          <label htmlFor="website">Website: </label>
-          <input 
-            id="website" 
-            type="text" 
-            value={editing.website}
-            onChange={(e) => handleEditChange("website", e.target.value)}
-          />
-          <br />
+            <label htmlFor="website">Website: </label>
+            <input 
+              id="website" 
+              type="text" 
+              value={editing.website}
+              onChange={(e) => handleEditChange("website", e.target.value)}
+            />
 
-          <button onClick={saveUser}>Lưu</button>
-          <button onClick={() => setEditing(null)}>Hủy</button>
+            <button onClick={saveUser}>Lưu</button>
+            <button onClick={() => setEditing(null)}>Hủy</button>
+          </div>
         </div>
       )}
 

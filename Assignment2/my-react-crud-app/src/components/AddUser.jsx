@@ -41,83 +41,77 @@ function AddUser({ onAdd }) {
     <div>
       <button onClick={() => setAdding(true)}>Thêm</button>
       {adding && (
-        <div>
-          <h4>Thêm người dùng</h4>
-          
-          <label htmlFor="name">Name: </label>
-          <input 
-            id="name" 
-            type="text" 
-            value={user.name}
-            onChange={handleChange}
-          />
-          <br />
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h4>Thêm người dùng</h4>
+            
+            <label htmlFor="name">Name: </label>
+            <input 
+              id="name" 
+              type="text" 
+              value={user.name}
+              onChange={handleChange}
+            />
 
-          <label htmlFor="username">Username: </label>
-          <input 
-            id="username" 
-            type="text" 
-            value={user.username}
-            onChange={handleChange}
-          />
-          <br />
+            <label htmlFor="username">Username: </label>
+            <input 
+              id="username" 
+              type="text" 
+              value={user.username}
+              onChange={handleChange}
+            />
 
-          <label htmlFor="email">Email: </label>
-          <input 
-            id="email" 
-            type="text" 
-            value={user.email}
-            onChange={handleChange}
-          />
-          <br />
+            <label htmlFor="email">Email: </label>
+            <input 
+              id="email" 
+              type="text" 
+              value={user.email}
+              onChange={handleChange}
+            />
 
-          <label htmlFor="street">Street: </label>
-          <input 
-            id="street" 
-            type="text" 
-            value={user.address.street}
-            onChange={handleChange}
-          />
-          <br />
+            <label htmlFor="street">Street: </label>
+            <input 
+              id="street" 
+              type="text" 
+              value={user.address.street}
+              onChange={handleChange}
+            />
 
-          <label htmlFor="suite">Suite: </label>
-          <input 
-            id="suite" 
-            type="text" 
-            value={user.address.suite}
-            onChange={handleChange}
-          />
-          <br />
+            <label htmlFor="suite">Suite: </label>
+            <input 
+              id="suite" 
+              type="text" 
+              value={user.address.suite}
+              onChange={handleChange}
+            />
 
-          <label htmlFor="city">City: </label>
-          <input 
-            id="city" 
-            type="text" 
-            value={user.address.city}
-            onChange={handleChange}
-          />
-          <br />
+            <label htmlFor="city">City: </label>
+            <input 
+              id="city" 
+              type="text" 
+              value={user.address.city}
+              onChange={handleChange}
+            />
 
-          <label htmlFor="phone">Phone: </label>
-          <input 
-            id="phone" 
-            type="text" 
-            value={user.phone}
-            onChange={handleChange}
-          />
-          <br />
+            <label htmlFor="phone">Phone: </label>
+            <input 
+              id="phone" 
+              type="text" 
+              value={user.phone}
+              onChange={handleChange}
+            />
 
-          <label htmlFor="website">Website: </label>
-          <input 
-            id="website" 
-            type="text" 
-            value={user.website}
-            onChange={handleChange}
-          />
-          <br />
+            <label htmlFor="website">Website: </label>
+            <input 
+              id="website" 
+              type="text" 
+              value={user.website}
+              onChange={handleChange}
+            />
 
-          <button onClick={handleAdd}>Lưu</button>
-          <button onClick={() => setAdding(false)}>Hủy</button>
+            <button onClick={handleAdd}>Lưu</button>
+            <button onClick={() => setAdding(false)}>Hủy</button>
+          </div>
         </div>
       )}
     </div>
