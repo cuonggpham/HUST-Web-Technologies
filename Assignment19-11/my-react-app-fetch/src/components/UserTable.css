@@ -1,0 +1,168 @@
+.table-container {
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.user-table thead {
+  background: #2e7d32;
+  color: white;
+}
+
+.user-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.user-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.user-table tbody tr:hover {
+  background: #e8f5e9;
+  transform: scale(1.01);
+}
+
+.user-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+  color: #2c3e50;
+}
+
+.user-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.user-table .no-data {
+  text-align: center;
+  color: #999;
+  padding: 40px;
+  font-style: italic;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-edit,
+.btn-delete {
+  border: none;
+  padding: 10px 24px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-edit {
+  background: #2e7d32;
+  color: white;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.btn-edit:hover {
+  background: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+}
+
+.btn-edit:active {
+  transform: translateY(0);
+}
+
+.btn-delete {
+  background: #c62828;
+  color: white;
+  box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+}
+
+.btn-delete:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 40, 40, 0.4);
+}
+
+.btn-delete:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-table {
+    font-size: 14px;
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 10px 8px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-table thead {
+    display: none;
+  }
+
+  .user-table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .user-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .user-table td:last-child {
+    border-bottom: none;
+  }
+
+  .user-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #1b5e20;
+  }
+
+  .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+  }
+}
