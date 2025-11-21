@@ -137,6 +137,19 @@ function App() {
         throw new Error('Email khong hop le');
       }
       
+      // JSONPlaceholder chi co user id 1-10
+      // Neu user id > 10, chi cap nhat local (khong goi API)
+      if (userId > 10) {
+        // Cap nhat state local cho user moi them
+        setUsers(prevUsers =>
+          prevUsers.map(user =>
+            user.id === userId ? { ...user, ...userData } : user
+          )
+        );
+        showToast('Cap nhat nguoi dung thanh cong!', 'success');
+        return true;
+      }
+      
       // FETCH API: Phuong thuc PUT de cap nhat du lieu
       // PUT thay the toan bo resource, con PATCH chi cap nhat mot phan
       const response = await fetch(`${API_URL}/${userId}`, {
