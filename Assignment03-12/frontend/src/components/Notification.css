@@ -2,7 +2,7 @@
   padding: 1rem 1.5rem;
   margin-bottom: 2rem;
   border-radius: 12px;
-  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  background: var(--success-light);
   color: var(--accent);
   border-left: 4px solid var(--primary);
   font-weight: 500;

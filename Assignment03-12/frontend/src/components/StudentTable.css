@@ -14,7 +14,7 @@ table:hover {
 }
 
 thead {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: var(--primary);
 }
 
 th {
@@ -74,25 +74,25 @@ td button {
 }
 
 td button:first-of-type {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: var(--primary);
   color: white;
   box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
 }
 
 td button:first-of-type:hover {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  background: var(--primary-dark);
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(16, 185, 129, 0.3);
 }
 
 td button:last-of-type {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: #ef4444;
   color: white;
   box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
 }
 
 td button:last-of-type:hover {
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  background: #dc2626;
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(239, 68, 68, 0.3);
 }
@@ -106,13 +106,13 @@ tbody tr:hover {
 }
 
 tbody tr.highlight {
-  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  background: var(--success-light);
   animation: fadeHighlight 3s ease-out;
 }
 
 @keyframes fadeHighlight {
   from {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    background: var(--success-light);
   }
   to {
     background-color: transparent;

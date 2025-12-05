@@ -39,7 +39,7 @@
 
 .sort-button {
   padding: 0.875rem 1.75rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 10px;
@@ -55,7 +55,7 @@
 }
 
 .sort-button:hover {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  background: var(--primary-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
