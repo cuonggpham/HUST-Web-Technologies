@@ -1,33 +1,101 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useMemo } from 'react'
+import { useStudents } from './hooks/useStudents'
+import Notification from './components/Notification'
+import StudentForm from './components/StudentForm'
+import SearchBar from './components/SearchBar'
+import StudentTable from './components/StudentTable'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { 
+    students, 
+    loading, 
+    notification, 
+    newStudentId, 
+    addStudent, 
+    updateStudent, 
+    deleteStudent 
+  } = useStudents()
+
+  const [editingStudent, setEditingStudent] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [sortAsc, setSortAsc] = useState(true)
+
+  const handleFormSubmit = async (studentData) => {
+    if (editingStudent) {
+      const result = await updateStudent(editingStudent._id, studentData)
+      if (result.success) {
+        setEditingStudent(null)
+      }
+      return result
+    } else {
+      return await addStudent(studentData)
+    }
+  }
+
+  const handleEdit = (student) => {
+    setEditingStudent(student)
+  }
+
+  const handleCancelEdit = () => {
+    setEditingStudent(null)
+  }
+
+  const handleDelete = async (id) => {
+    const result = await deleteStudent(id)
+    if (!result.success) {
+      alert('Xóa thất bại: ' + result.error)
+    }
+  }
+
+  // Filter and sort students
+  const displayedStudents = useMemo(() => {
+    const filtered = students.filter(student =>
+      student.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+
+    return [...filtered].sort((a, b) => {
+      return sortAsc 
+        ? a.name.localeCompare(b.name) // localeCompare for proper string 
+        : b.name.localeCompare(a.name)
+    })
+  }, [students, searchTerm, sortAsc])
+
+  const toggleSort = () => {
+    setSortAsc(!sortAsc)
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Danh sách học sinh</h1>
+
+      <Notification message={notification} />
+
+      <SearchBar 
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        sortAsc={sortAsc}
+        onToggleSort={toggleSort}
+      />
+
+      <StudentForm 
+        key={editingStudent?._id || 'new'}
+        loading={loading}
+        onSubmit={handleFormSubmit}
+        editingStudent={editingStudent}
+        onCancelEdit={handleCancelEdit}
+      />
+
+      {students.length === 0 ? (
+        <p>Chưa có học sinh nào</p>
+      ) : (
+        <StudentTable 
+          students={displayedStudents}
+          newStudentId={newStudentId}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      )}
     </>
   )
 }

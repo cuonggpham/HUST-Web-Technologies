@@ -1,0 +1,161 @@
+table {
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+  table-layout: fixed;
+}
+
+table:hover {
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+thead {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+}
+
+th {
+  padding: 1.25rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: white;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+th:nth-child(1) {
+  width: 40%;
+}
+
+th:nth-child(2) {
+  width: 15%;
+}
+
+th:nth-child(3) {
+  width: 20%;
+}
+
+th:nth-child(4) {
+  width: 25%;
+}
+
+td {
+  padding: 1.25rem 1rem;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td:nth-child(1) {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+td:nth-child(4) {
+  white-space: normal;
+}
+
+td button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+td button:first-of-type {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
+}
+
+td button:first-of-type:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.3);
+}
+
+td button:last-of-type {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.2);
+}
+
+td button:last-of-type:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(239, 68, 68, 0.3);
+}
+
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: var(--hover-bg);
+}
+
+tbody tr.highlight {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  animation: fadeHighlight 3s ease-out;
+}
+
+@keyframes fadeHighlight {
+  from {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+p {
+  text-align: center;
+  color: var(--text-gray);
+  padding: 3rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
+  border: 1px solid var(--border-light);
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 0.875rem;
+    table-layout: auto;
+  }
+  
+  th, td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  th:nth-child(1),
+  th:nth-child(2),
+  th:nth-child(3),
+  th:nth-child(4) {
+    width: auto;
+  }
+  
+  td button {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    margin-right: 0.25rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  td button:last-of-type {
+    margin-bottom: 0;
+  }
+}
